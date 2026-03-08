@@ -2,6 +2,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ChatbotWidget from './components/ChatbotWidget.jsx';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const navItems = [
   { label: 'Home', href: '#' },
   { label: 'Hospitals', href: '#hospitals' },
@@ -51,7 +53,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/hospitals')
+    fetch(`${API_BASE_URL}/api/hospitals`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {
@@ -234,7 +236,7 @@ function AuthFlow({ onLoginSuccess, onSelectHospital }) {
     setLoading(true);
     setError('');
 
-    const url = isLogin ? 'http://localhost:5000/api/auth/login' : 'http://localhost:5000/api/auth/register';
+    const url = isLogin ? `${API_BASE_URL}/api/auth/login` : `${API_BASE_URL}/api/auth/register`;
     const payload = isLogin
       ? { email, password }
       : { name, email, password, phone, role: 'USER' };
@@ -397,7 +399,7 @@ function HospitalAuthFlow({ onBack, onLoginSuccess }) {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('http://localhost:5000/api/auth/hospital-login', {
+      const res = await fetch(`${API_BASE_URL}/api/auth/hospital-login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ hospitalId: hospitalId.trim(), password }),
@@ -1795,7 +1797,7 @@ function HighlightsSection({ hospitals, getRemainingSlots, registerBooking, getD
                                 patientPhone,
                               };
                               try {
-                                await fetch('http://localhost:5000/api/bookings', {
+                                await fetch(`${API_BASE_URL}/api/bookings`, {
                                   method: 'POST',
                                   headers: { 'Content-Type': 'application/json' },
                                   body: JSON.stringify(bookingPayload),
@@ -1890,7 +1892,7 @@ function HospitalDashboard({ hospital, onBack, slotBookings, slotCapacityPerHour
   useEffect(() => {
     const fetchId = hospital?.hospitalId || hospital?.id;
     if (!fetchId) return;
-    fetch(`http://localhost:5000/api/bookings/hospital/${fetchId}`)
+    fetch(`${API_BASE_URL}/api/bookings/hospital/${fetchId}`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) setBookings(data);
@@ -1939,7 +1941,7 @@ function HospitalDashboard({ hospital, onBack, slotBookings, slotCapacityPerHour
     );
     setTimeout(async () => {
       try {
-        await fetch(`http://localhost:5000/api/bookings/${bookingId}`, { method: 'DELETE' });
+        await fetch(`${API_BASE_URL}/api/bookings/${bookingId}`, { method: 'DELETE' });
         setBookings((prev) => prev.filter((b) => b.id !== bookingId));
       } catch (err) {
         console.error('Failed to complete booking', err);
@@ -1954,7 +1956,7 @@ function HospitalDashboard({ hospital, onBack, slotBookings, slotCapacityPerHour
     );
     setTimeout(async () => {
       try {
-        await fetch(`http://localhost:5000/api/bookings/${bookingId}`, { method: 'DELETE' });
+        await fetch(`${API_BASE_URL}/api/bookings/${bookingId}`, { method: 'DELETE' });
         setBookings((prev) => prev.filter((b) => b.id !== bookingId));
       } catch (err) {
         console.error('Failed to cancel booking', err);
@@ -2018,7 +2020,7 @@ function HospitalDashboard({ hospital, onBack, slotBookings, slotCapacityPerHour
       const doctorIndex = editingDoctor.id - 1; // id is 1-based, index is 0-based
       try {
         await fetch(
-          `http://localhost:5000/api/hospitals/${hospital.hospitalId}/doctors/${doctorIndex}/availability`,
+          `${API_BASE_URL}/api/hospitals/${hospital.hospitalId}/doctors/${doctorIndex}/availability`,
           {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },

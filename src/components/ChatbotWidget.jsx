@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+const CHATBOT_API_URL = import.meta.env.VITE_CHATBOT_URL || 'http://localhost:8000';
+
 // ─── Local symptom → specialist mapping (used when backend is unavailable) ───
 const SYMPTOM_MAP = [
   { keywords: ['chest pain', 'chest', 'heart', 'palpitation', 'cardiac', 'angina', 'heart attack'], specialist: 'Cardiologist', diseases: ['Angina', 'Hypertension', 'Myocardial Infarction'] },
@@ -150,7 +152,7 @@ function ChatbotWidget({ hospitals = [] }) {
     let resolved = null;
 
     try {
-      const response = await fetch('http://localhost:8000/api/chatbot/analyze', {
+      const response = await fetch(`${CHATBOT_API_URL}/api/chatbot/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ symptoms: trimmed }),
