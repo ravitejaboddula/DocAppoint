@@ -1,0 +1,32 @@
+# ── Node / React ────────────────────────────────────────────────
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+
+# ── Java / Maven ─────────────────────────────────────────────────
+target/
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+
+# ── Spring Boot secrets (NEVER push passwords to GitHub) ────────
+hospital-service/src/main/resources/application.properties
+chatbot-service/src/main/resources/application.properties
+
+# ── IDE / OS ─────────────────────────────────────────────────────
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+
+# ── MongoDB backup ───────────────────────────────────────────────
+docappoint_backup/

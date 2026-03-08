@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-sky-50 text-slate-900 antialiased;
+}
+
+.app-shell {
+  @apply min-h-screen bg-sky-50 text-slate-900;
+}
+
+.glass-panel {
+  @apply bg-white backdrop-blur-xl border border-sky-100 shadow-soft-glow rounded-3xl;
+}
+
+.nearby-overlay-backdrop {
+  @apply bg-slate-900/40;
+  backdrop-filter: blur(6px);
+  animation: doca-fade-in 0.18s ease-out;
+}
+
+.nearby-overlay-panel {
+  animation: doca-fade-in-up 0.22s ease-out;
+}
+
+.nearby-scroll {
+  scrollbar-width: thin;
+}
+
+.nearby-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.nearby-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.nearby-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.7);
+  border-radius: 9999px;
+}
+
+@keyframes doca-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes doca-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
