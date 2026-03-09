@@ -1108,9 +1108,9 @@ function HeroSection({ hospitals, onNearbyComputed, getRemainingSlots, registerB
       )}
 
       {bookingHospital && (
-        <div className="fixed inset-0 z-40 flex items-center justify-center bg-slate-900/40 px-4">
-          <div className="w-full max-w-2xl rounded-3xl bg-white p-5 shadow-2xl ring-1 ring-slate-200 sm:p-6">
-            <div className="flex items-start justify-between gap-3">
+        <div className="fixed inset-0 z-40 flex items-end sm:items-center justify-center bg-slate-900/40 sm:px-4">
+          <div className="w-full max-w-2xl sm:rounded-3xl rounded-t-3xl sm:rounded-b-3xl bg-white p-4 pb-8 shadow-2xl ring-1 ring-slate-200 sm:p-6 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-start justify-between gap-3 sticky top-0 bg-white pb-2 z-10">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-600">
                   Book at {bookingHospital.name}
@@ -1555,9 +1555,9 @@ function HighlightsSection({ hospitals, getRemainingSlots, registerBooking, getD
                 )}
               </div>
               {selectedHospital && (
-                <div className="fixed inset-0 z-30 flex items-center justify-center bg-slate-900/30 px-4 nearby-overlay-backdrop">
-                  <div className="w-full max-w-2xl rounded-3xl bg-white p-5 shadow-2xl ring-1 ring-slate-200 sm:p-6 nearby-overlay-panel">
-                    <div className="flex items-start justify-between gap-3">
+                <div className="fixed inset-0 z-40 flex items-end sm:items-center justify-center bg-slate-900/40 sm:px-4 nearby-overlay-backdrop">
+                  <div className="w-full max-w-2xl sm:rounded-3xl rounded-t-3xl sm:rounded-b-3xl bg-white p-4 pb-8 shadow-2xl ring-1 ring-slate-200 sm:p-6 max-h-[90vh] overflow-y-auto nearby-overlay-panel">
+                    <div className="flex items-start justify-between gap-3 sticky top-0 bg-white pb-2 z-10">
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-600">
                           Book at {selectedHospital.name}
