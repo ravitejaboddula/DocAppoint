@@ -14,7 +14,13 @@ const SLOT_CAPACITY_PER_HOUR = 6;
 function App() {
   const [hospitals, setHospitals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeRole, setActiveRole] = useState(null); // 'user' | 'hospital' | null
+  const [activeRole, setActiveRole] = useState(() => {
+    try {
+      if (localStorage.getItem('user')) return 'user';
+      if (localStorage.getItem('hospitalData')) return 'hospital';
+    } catch { /* ignore */ }
+    return null;
+  }); // 'user' | 'hospital' | null
   const [userCoords, setUserCoords] = useState(null);
   const hasRequestedGeoRef = useRef(false);
   // Slot bookings persist per-day via localStorage — reset automatically on a new day
@@ -30,7 +36,9 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState(() => {
     try { return JSON.parse(localStorage.getItem('user')); } catch { return null; }
   });
-  const [hospitalData, setHospitalData] = useState(null); // hospital admin data after login
+  const [hospitalData, setHospitalData] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('hospitalData')); } catch { return null; }
+  }); // hospital admin data after login
 
   // Persist slot bookings to localStorage with today's date
   useEffect(() => {
@@ -204,12 +212,17 @@ function App() {
               onBack={() => setActiveRole(null)}
               onLoginSuccess={(data) => {
                 setHospitalData(data);
+                localStorage.setItem('hospitalData', JSON.stringify(data));
               }}
             />
           ) : (
             <HospitalDashboard
               hospital={hospitalData}
-              onBack={() => { setActiveRole(null); setHospitalData(null); }}
+              onBack={() => { 
+                setActiveRole(null); 
+                setHospitalData(null); 
+                localStorage.removeItem('hospitalData');
+              }}
               slotBookings={slotBookings}
               slotCapacityPerHour={SLOT_CAPACITY_PER_HOUR}
             />
