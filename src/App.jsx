@@ -519,6 +519,7 @@ function HospitalAuthFlow({ onBack, onLoginSuccess }) {
 function SiteHeader({ user, onLogout }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const dropdownRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -627,12 +628,50 @@ function SiteHeader({ user, onLogout }) {
 
         <button
           type="button"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-700/70 text-slate-200 hover:border-sky-500 hover:text-sky-400 md:hidden"
+          onClick={() => setShowMobileMenu(!showMobileMenu)}
+          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-sky-300 text-sky-500 hover:border-sky-500 hover:bg-sky-50 transition-colors md:hidden"
         >
           <span className="sr-only">Open navigation</span>
-          <span className="i-lucide-menu h-4 w-4">☰</span>
+          <span className="i-lucide-menu h-4 w-4 text-lg leading-none">☰</span>
         </button>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      {showMobileMenu && (
+        <div className="md:hidden border-t border-slate-100 bg-white px-4 py-4 shadow-xl">
+          <nav className="flex flex-col gap-4">
+            {navItems.map((item) => (
+              <a key={item.label} href={item.href} className="text-sm font-medium text-slate-600 hover:text-sky-500" onClick={() => setShowMobileMenu(false)}>
+                {item.label}
+              </a>
+            ))}
+            {user ? (
+              <div className="pt-4 border-t border-slate-100 flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-sky-500 to-emerald-500 text-white text-sm font-bold">
+                    {getInitials(user.name)}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-slate-900">{user.name}</p>
+                    <p className="text-xs text-slate-500">{user.email}</p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => { setShowMobileMenu(false); onLogout(); }}
+                  className="w-full rounded-xl bg-rose-50 py-2.5 text-xs font-semibold text-rose-600 hover:bg-rose-100 transition-colors"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <button type="button" onClick={() => setShowMobileMenu(false)} className="mt-2 w-full rounded-full bg-sky-600 py-2.5 text-sm font-semibold text-white shadow-md shadow-sky-500/30 transition hover:bg-sky-500">
+                Login / Register
+              </button>
+            )}
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
