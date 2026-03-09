@@ -270,10 +270,10 @@ function AuthFlow({ onLoginSuccess, onSelectHospital }) {
   };
 
   return (
-    <section className="mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-4 py-8 sm:px-6 min-h-[80vh] relative">
+    <section className="mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-4 py-6 sm:px-6 sm:py-8 min-h-[80vh] sm:min-h-screen relative">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-sky-100 via-white to-emerald-50 opacity-40" />
 
-      <div className="w-full max-w-md backdrop-blur-3xl bg-white/60 p-8 rounded-[2.5rem] shadow-2xl shadow-sky-500/10 ring-1 ring-white/80 border border-sky-100 relative overflow-hidden">
+      <div className="w-full max-w-md backdrop-blur-3xl bg-white/70 p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-sky-500/10 ring-1 ring-white/80 border border-sky-100 relative overflow-hidden">
         {/* Glow Effects */}
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-sky-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
         <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
@@ -418,9 +418,9 @@ function HospitalAuthFlow({ onBack, onLoginSuccess }) {
   };
 
   return (
-    <section className="mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-4 py-8 sm:px-6 min-h-[80vh] relative">
+    <section className="mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-4 py-6 sm:px-6 sm:py-8 min-h-[80vh] sm:min-h-screen relative">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-emerald-100 via-white to-sky-50 opacity-40" />
-      <div className="w-full max-w-md backdrop-blur-3xl bg-white/70 p-8 rounded-[2.5rem] shadow-2xl shadow-emerald-500/10 ring-1 ring-white/80 border border-emerald-100 relative overflow-hidden">
+      <div className="w-full max-w-md backdrop-blur-3xl bg-white/70 p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-emerald-500/10 ring-1 ring-white/80 border border-emerald-100 relative overflow-hidden">
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-emerald-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
         <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-sky-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
         <div className="relative z-10">
