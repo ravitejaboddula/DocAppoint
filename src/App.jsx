@@ -61,21 +61,28 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/hospitals`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          setHospitals(normalizeHospitals(data));
-        } else {
+    const fetchHospitals = () => {
+      fetch(`${API_BASE_URL}/api/hospitals`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (Array.isArray(data) && data.length > 0) {
+            setHospitals(normalizeHospitals(data));
+          } else {
+            setHospitals([]);
+          }
+          setIsLoading(false);
+        })
+        .catch(() => {
+          // Backend unavailable — show empty state, no static fallback
           setHospitals([]);
-        }
-        setIsLoading(false);
-      })
-      .catch(() => {
-        // Backend unavailable — show empty state, no static fallback
-        setHospitals([]);
-        setIsLoading(false);
-      });
+          setIsLoading(false);
+        });
+    };
+
+    fetchHospitals(); // Initial fetch
+    const intervalId = setInterval(fetchHospitals, 10000); // Poll for real-time updates every 10s
+
+    return () => clearInterval(intervalId);
   }, []);
 
   // When the user role is selected, ask for location (only once)
@@ -1901,17 +1908,25 @@ function HospitalDashboard({ hospital, onBack, slotBookings, slotCapacityPerHour
   // Bookings start empty, then load from DB
   const [bookings, setBookings] = useState([]);
 
-  // Fetch bookings from backend when the dashboard loads
+  // Fetch bookings from backend when the dashboard loads & auto-poll
   useEffect(() => {
     const fetchId = hospital?.hospitalId || hospital?.id;
     if (!fetchId) return;
-    fetch(`${API_BASE_URL}/api/bookings/hospital/${fetchId}`)
-      .then(res => res.json())
-      .then(data => {
-        if (Array.isArray(data)) setBookings(data);
-      })
-      .catch(() => { }); // silently ignore if offline
-  }, [hospital?.hospitalId]);
+
+    const fetchBookings = () => {
+      fetch(`${API_BASE_URL}/api/bookings/hospital/${fetchId}`)
+        .then(res => res.json())
+        .then(data => {
+          if (Array.isArray(data)) setBookings(data);
+        })
+        .catch(() => { }); // silently ignore if offline
+    };
+
+    fetchBookings(); // Initial fetch
+    const intervalId = setInterval(fetchBookings, 8000); // Auto-refresh bookings every 8 seconds
+
+    return () => clearInterval(intervalId);
+  }, [hospital?.hospitalId, hospital?.id]);
 
   const handleAddDoctor = (event) => {
     event.preventDefault();
