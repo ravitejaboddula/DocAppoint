@@ -1139,7 +1139,7 @@ function HeroSection({ hospitals, onNearbyComputed, getRemainingSlots, registerB
                   <p className="text-[0.7rem] font-semibold text-slate-700">
                     1. Choose a date
                   </p>
-                  <div className="mt-2 flex items-center gap-2">
+                  <div className="mt-2 flex flex-col items-start gap-2">
                     <div className="flex flex-wrap gap-2">
                       {getDateRange(heroMinDateStr, heroMaxDateStr).map((option) => {
                         const isAvailable =
@@ -1586,7 +1586,7 @@ function HighlightsSection({ hospitals, getRemainingSlots, registerBooking, getD
                           <p className="text-[0.7rem] font-semibold text-slate-700">
                             1. Choose a date
                           </p>
-                          <div className="mt-2 flex items-center gap-2">
+                          <div className="mt-2 flex flex-col items-start gap-2">
                             <div className="flex flex-wrap gap-2">
                               {getDateRange(minDateStr, maxDateStr).map((option) => {
                                 const isAvailable =
