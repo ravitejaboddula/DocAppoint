@@ -213,6 +213,7 @@ function App() {
                 registerBooking={registerBooking}
                 getDaysFromToday={getDaysFromToday}
               />
+              <ChatbotWidget hospitals={hospitals} />
             </>
           ) : activeRole === 'hospital' && !hospitalData ? (
             <HospitalAuthFlow
@@ -235,8 +236,6 @@ function App() {
             />
           )}
         </main>
-        <SiteFooter />
-        <ChatbotWidget hospitals={hospitals} />
       </div>
     </div>
   );
@@ -2668,19 +2667,7 @@ function HospitalDashboard({ hospital, onBack, slotBookings, slotCapacityPerHour
 }
 
 
-function SiteFooter() {
-  return (
-    <footer className="border-t border-slate-200 bg-white/95">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-4 text-[0.7rem] text-slate-500 sm:flex-row sm:px-6">
-        <p>© {new Date().getFullYear()} DocApoint. UI preview only.</p>
-        <p className="text-[0.65rem]">
-          Backend: Spring Boot microservices · ML: Python FastAPI · DB:
-          PostgreSQL
-        </p>
-      </div>
-    </footer>
-  );
-}
+
 
 function normalizeHospitals(raw) {
   if (!Array.isArray(raw)) return [];
