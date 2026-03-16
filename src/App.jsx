@@ -2656,10 +2656,7 @@ function HospitalDashboard({ hospital, onBack, slotBookings, slotCapacityPerHour
             </div>
           )}
 
-          <p className="mt-2 text-[0.65rem] text-slate-500">
-            In the full implementation, this panel would be backed by a Spring Boot appointment
-            service, so that every user booking updates these counts in real time.
-          </p>
+
         </div>
       </div>
     </section>
