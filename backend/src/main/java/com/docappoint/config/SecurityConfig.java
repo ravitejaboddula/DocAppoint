@@ -30,7 +30,7 @@ public class SecurityConfig {
             // 3. Set Session to Stateless (no JSESSIONID cookie)
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             
-            // 4. Set endpoint permissions to permit all
+            // 4. Set endpoint permissions to permit all for testing
             .authorizeHttpRequests(auth -> auth
                 .anyRequest().permitAll()
             );
