@@ -1,5 +1,5 @@
-# Use official Maven image to build the application
-FROM maven:3.8.4-openjdk-17-slim AS build
+# Use eclipse-temurin for both build and runtime
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 
 # Copy the pom.xml and download dependencies
@@ -10,8 +10,8 @@ RUN mvn dependency:go-offline
 COPY src ./src
 RUN mvn package -DskipTests
 
-# Use OpenJDK for the runtime
-FROM openjdk:17-jdk-slim
+# Use eclipse-temurin JRE for the runtime
+FROM eclipse-temurin:17-jre
 WORKDIR /app
 
 # Copy the built jar from the build stage
