@@ -14,10 +14,10 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Apply to all endpoints
-                        .allowedOriginPatterns("*") // Allow all origins (use patterns for production)
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH") // Allow all common methods
-                        .allowedHeaders("*") // Allow all headers
-                        .allowCredentials(true); // Allow sending credentials (JWT/Cookies)
+                        .allowedOriginPatterns("https://*.vercel.app", "http://localhost:5173", "http://localhost:3000") // Explicitly allow Vercel and localhost
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }
