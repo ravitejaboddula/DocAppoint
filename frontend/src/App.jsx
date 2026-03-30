@@ -193,10 +193,6 @@ function App() {
           {isLoading ? (
             <div className="flex flex-col h-96 items-center justify-center text-slate-500 gap-4">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-              <div className="text-center">
-                <p className="font-medium text-slate-300">Loading DocApoint...</p>
-                <p className="text-sm text-slate-500 mt-2">Waking up the backend server, please wait...</p>
-              </div>
             </div>
           ) : !activeRole ? (
             <AuthFlow onLoginSuccess={() => {
