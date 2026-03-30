@@ -85,6 +85,18 @@ function ChatbotWidget({ hospitals = [] }) {
       return;
     }
 
+    // Check for greetings
+    const greetingKeywords = ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening', 'greetings', 'howdy'];
+    const isGreeting = greetingKeywords.some((kw) => trimmed.toLowerCase().includes(kw));
+
+    if (isGreeting) {
+      const greetingResponse = "Hello! 👋 Welcome to DocApoint. I'm here to help you find the right doctor based on your symptoms. Please describe what symptoms you're experiencing, and I'll guide you to the appropriate specialist.";
+      const userMessage = { from: 'user', text: trimmed };
+      setMessages((prev) => [...prev, userMessage, { from: 'bot', text: greetingResponse }]);
+      setInput('');
+      return;
+    }
+
     const hospitalKeywords = ['yes', 'hospitals', 'hospital', 'nearby', 'near me', 'find hospitals', 'show hospitals', 'where can i find', 'doctor near me'];
     const isAskingForHospitals = hospitalKeywords.some((kw) => trimmed.toLowerCase().includes(kw));
 
