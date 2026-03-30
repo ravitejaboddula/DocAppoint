@@ -13,9 +13,12 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // Apply to all endpoints
-                        .allowedOriginPatterns("https://*.vercel.app", "http://localhost:5173", "http://localhost:3000") // Explicitly allow Vercel and localhost
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
+                registry.addMapping("/**")
+                        .allowedOrigins(
+                            "http://localhost:5173", // Your local frontend
+                            "https://doc-appoint-two.vercel.app" // Your Vercel frontend
+                        )
+                        .allowedMethods("*")
                         .allowedHeaders("*")
                         .allowCredentials(true);
             }
