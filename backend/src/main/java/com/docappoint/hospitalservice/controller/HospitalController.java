@@ -25,7 +25,6 @@ import com.docappoint.hospitalservice.service.DataSeederService;
 
 @RestController
 @RequestMapping("/api/hospitals")
-@CrossOrigin(origins = "*")
 public class HospitalController {
 
     private final HospitalRepository hospitalRepository;

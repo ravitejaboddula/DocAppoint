@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/api/chatbot")
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:3000"})
 public class ChatbotController {
 
     private final ChatbotService chatbotService;
