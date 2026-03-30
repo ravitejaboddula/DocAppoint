@@ -195,7 +195,7 @@ function App() {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
               <div className="text-center">
                 <p className="font-medium text-slate-300">Loading DocApoint...</p>
-                <p className="text-sm text-slate-500 mt-2 italic">Backend is waking up (may take 60s on first load)...</p>
+                <p className="text-sm text-slate-500 mt-2">Waking up the backend server, please wait...</p>
               </div>
             </div>
           ) : !activeRole ? (
@@ -1620,7 +1620,7 @@ function HighlightsSection({ hospitals, getRemainingSlots, registerBooking, getD
               </div>
               {selectedHospital && (
                 <div className="fixed inset-0 z-40 flex items-end sm:items-center justify-center bg-slate-900/40 p-0 sm:p-4 nearby-overlay-backdrop">
-                  <div className="w-full max-w-2xl sm:rounded-3xl rounded-t-[1.5rem] rounded-b-none bg-white p-3 pb-safe sm:p-6 max-h-[85vh] sm:max-h-[90vh] overflow-y-auto nearby-overlay-panel">
+                  <div className="w-full max-w-2xl sm:rounded-3xl rounded-t-[1.5rem] rounded-b-none bg-white p-2 pb-safe sm:p-6 max-h-[85vh] sm:max-h-[90vh] overflow-y-auto nearby-overlay-panel">
                     <div className="flex items-start justify-between gap-2 sticky top-0 bg-white pb-2 pt-1 z-10 border-b border-slate-100 sm:border-0 sm:pb-0">
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-600">
