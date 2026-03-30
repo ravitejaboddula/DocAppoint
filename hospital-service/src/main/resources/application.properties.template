@@ -1,9 +1,0 @@
-spring.application.name=hospital-service
-
-# Run on the same port the old Node backend used
-server.port=5000
-
-# Replace with your MongoDB Atlas connection string
-spring.data.mongodb.uri=mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER>.mongodb.net/docappoint?appName=docappoint
-
-# CORS is also configured via @CrossOrigin on the controller.

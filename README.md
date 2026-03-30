@@ -33,31 +33,22 @@
 
 ```
 DocAppoint/
-├── src/                          # React Frontend (Vite)
-│   ├── App.jsx                   # Main application (Auth, Booking, Dashboard)
-│   └── components/
-│       └── ChatbotWidget.jsx     # AI Chatbot UI component
+├── frontend/                     # React Frontend (Vite)
+│   ├── src/                      # Source code
+│   │   ├── App.jsx               # Main application
+│   │   └── components/
+│   │       └── ChatbotWidget.jsx # AI Chatbot UI
+│   ├── package.json              # Frontend dependencies
+│   └── vite.config.js            # Vite configuration
 │
-├── hospital-service/             # Java Spring Boot Backend
-│   └── src/main/java/com/docappoint/hospitalservice/
-│       ├── controller/           # REST API Controllers
-│       │   ├── AuthController.java       # User & Hospital login/register
-│       │   ├── BookingController.java    # CRUD for bookings
-│       │   ├── HospitalController.java   # Hospital data & doctor availability
-│       │   └── HealthController.java     # /actuator/health
-│       ├── model/                # MongoDB Document Models
-│       │   ├── User.java
-│       │   ├── Hospital.java
-│       │   ├── Doctor.java
-│       │   ├── Booking.java
-│       │   └── HospitalAdmin.java
-│       ├── repository/           # Spring Data MongoDB Repositories
-│       ├── security/             # JWT Filter, JWT Util, Security Config
-│       ├── service/              # DataSeederService (seeds on first run only)
-│       └── config/               # HospitalDataSeeder, HospitalAdminSeeder
-│
-└── chatbot-service/              # Java Spring Boot Chatbot Microservice
-    └── Integrates with Google Gemini 2.5 Flash API
+└── backend/                      # Unified Java Spring Boot Backend
+    ├── src/main/java/com/docappoint/
+    │   ├── chatbot/              # AI Chatbot service logic
+    │   ├── hospitalservice/      # Hospital & Appointment logic
+    │   ├── config/               # Security, MongoDB, Seeder configs
+    │   ├── security/             # JWT Filter, JWT Util
+    │   └── DocAppointApplication.java # Single Entry Point
+    └── pom.xml                   # Combined dependencies
 ```
 
 ---
@@ -93,34 +84,28 @@ cd DocAppoint
 
 Copy the template and fill in your Atlas credentials:
 ```bash
-cp hospital-service/src/main/resources/application.properties.template \
-   hospital-service/src/main/resources/application.properties
+cp backend/src/main/resources/application.properties.template \
+   backend/src/main/resources/application.properties
 ```
 
-Edit `application.properties`:
+Edit `backend/src/main/resources/application.properties`:
 ```properties
-spring.application.name=hospital-service
-server.port=5000
+spring.application.name=docappoint-backend
+server.port=8080
 spring.data.mongodb.uri=mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER>.mongodb.net/docappoint?appName=docappoint
 ```
 
-### 3. Start the Hospital Service Backend
+### 3. Start the Backend
 ```bash
-cd hospital-service
+cd backend
 mvn spring-boot:run
 ```
-> Runs on **http://localhost:5000**  
+> Runs on **http://localhost:8080**  
 > Seeds 130 hospitals + 10 admin accounts on first run automatically.
 
-### 4. Start the Chatbot Service (optional)
+### 4. Start the Frontend
 ```bash
-cd chatbot-service
-mvn spring-boot:run
-```
-
-### 5. Start the Frontend
-```bash
-# From the root DocAppoint folder
+cd frontend
 npm install
 npm run dev
 ```
@@ -171,6 +156,7 @@ Register a new account from the login screen.
 
 ### Frontend → Vercel
 ```bash
+cd frontend
 npm run build
 # Deploy the dist/ folder to Vercel
 ```
@@ -179,8 +165,8 @@ npm run build
 - Push to GitHub ✅  
 - Connect your repo on [render.com](https://render.com) or [railway.app](https://railway.app)  
 - Set environment variable: `SPRING_DATA_MONGODB_URI=mongodb+srv://...`  
-- Build command: `mvn -f hospital-service/pom.xml clean package -DskipTests`  
-- Start command: `java -jar hospital-service/target/*.jar`
+- Build command: `mvn -f backend/pom.xml clean package -DskipTests`  
+- Start command: `java -jar backend/target/*.jar`
 
 ---
 
