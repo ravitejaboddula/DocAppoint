@@ -18,6 +18,7 @@ backend/*.rar
 backend/hs_err_pid*
 
 # ── Spring Boot secrets (NEVER push passwords to GitHub) ────────
+backend/src/main/resources/application.properties
 hospital-service/src/main/resources/application.properties
 chatbot-service/src/main/resources/application.properties
 
