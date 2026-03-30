@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Collections;
 import io.jsonwebtoken.Claims;
 
-@Component
+// @Component - Commented out to prevent automatic registration by Spring Boot
 public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;

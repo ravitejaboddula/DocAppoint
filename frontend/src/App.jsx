@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ChatbotWidget from './components/ChatbotWidget.jsx';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://docappoint-backend-aeuz.onrender.com';
 
 const navItems = [
   { label: 'Home', href: '#' },

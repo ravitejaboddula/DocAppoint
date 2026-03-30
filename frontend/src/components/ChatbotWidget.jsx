@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const CHATBOT_API_URL = import.meta.env.VITE_CHATBOT_URL || 'http://localhost:8080';
+const CHATBOT_API_URL = import.meta.env.VITE_CHATBOT_URL || 'https://docappoint-backend-aeuz.onrender.com';
 
 // ─── Local symptom → specialist mapping (used when backend is unavailable) ───
 const SYMPTOM_MAP = [
