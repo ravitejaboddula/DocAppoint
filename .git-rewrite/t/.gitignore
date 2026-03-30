@@ -1,0 +1,32 @@
+# ── Node / React (Frontend) ──────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+
+# ── Java / Maven (Backend) ───────────────────────────────────────
+backend/target/
+backend/*.class
+backend/*.jar
+backend/*.war
+backend/*.nar
+backend/*.ear
+backend/*.zip
+backend/*.tar.gz
+backend/*.rar
+backend/hs_err_pid*
+
+# ── Spring Boot secrets (NEVER push passwords to GitHub) ────────
+hospital-service/src/main/resources/application.properties
+chatbot-service/src/main/resources/application.properties
+
+# ── IDE / OS ─────────────────────────────────────────────────────
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+
+# ── MongoDB backup ───────────────────────────────────────────────
+docappoint_backup/

@@ -1620,7 +1620,7 @@ function HighlightsSection({ hospitals, getRemainingSlots, registerBooking, getD
               </div>
               {selectedHospital && (
                 <div className="fixed inset-0 z-40 flex items-end sm:items-center justify-center bg-slate-900/40 p-0 sm:p-4 nearby-overlay-backdrop">
-                  <div className="w-full max-w-2xl sm:rounded-3xl rounded-t-[1.5rem] rounded-b-none bg-white p-2 pb-safe sm:p-6 max-h-[85vh] sm:max-h-[90vh] overflow-y-auto nearby-overlay-panel">
+                  <div className="w-full max-w-2xl sm:rounded-3xl rounded-t-[1.5rem] rounded-b-none bg-white p-2 pb-safe sm:p-6 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto nearby-overlay-panel">
                     <div className="flex items-start justify-between gap-2 sticky top-0 bg-white pb-2 pt-1 z-10 border-b border-slate-100 sm:border-0 sm:pb-0">
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-600">
