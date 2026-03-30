@@ -1619,9 +1619,9 @@ function HighlightsSection({ hospitals, getRemainingSlots, registerBooking, getD
                 )}
               </div>
               {selectedHospital && (
-                <div className="fixed inset-0 z-40 flex items-end sm:items-center justify-center bg-slate-900/40 p-0 sm:p-4 nearby-overlay-backdrop">
-                  <div className="w-full max-w-2xl sm:rounded-3xl rounded-t-[1.5rem] rounded-b-none bg-white p-2 pb-safe sm:p-6 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto nearby-overlay-panel">
-                    <div className="flex items-start justify-between gap-2 sticky top-0 bg-white pb-2 pt-1 z-10 border-b border-slate-100 sm:border-0 sm:pb-0">
+                <div className="fixed inset-0 z-40 flex items-end sm:items-center justify-center bg-slate-900/40 p-0 sm:p-2 nearby-overlay-backdrop">
+                  <div className="w-full max-w-2xl sm:rounded-3xl rounded-t-[1.5rem] rounded-b-none bg-white p-2 pb-safe sm:p-3 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto nearby-overlay-panel">
+                    <div className="flex items-start justify-between gap-2 sticky top-0 bg-white pb-1 pt-1 z-10 border-b border-slate-100 sm:border-0 sm:pb-0">
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-600">
                           Book at {selectedHospital.name}
@@ -1644,13 +1644,13 @@ function HighlightsSection({ hospitals, getRemainingSlots, registerBooking, getD
                       </button>
                     </div>
 
-                    <div className="mt-4 space-y-4 text-xs">
-                      <div className="grid gap-4 md:grid-cols-[1.1fr,1fr] md:items-start">
+                    <div className="mt-2 space-y-2 text-xs">
+                      <div className="grid gap-2 md:grid-cols-[1.1fr,1fr] md:items-start">
                         <div>
                           <p className="text-[0.7rem] font-semibold text-slate-700">
                             1. Choose a date
                           </p>
-                          <div className="mt-2 flex flex-col items-start gap-2">
+                          <div className="mt-1 flex flex-col items-start gap-1">
                             <div className="flex flex-wrap gap-2">
                               {getDateRange(minDateStr, maxDateStr).map((option) => {
                                 const isAvailable =
